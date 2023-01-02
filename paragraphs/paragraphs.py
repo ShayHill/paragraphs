@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# _*_ coding: utf-8 _*_
 """Html-like formatting of multi-line strings.
 
 :author: Shay Hill
@@ -42,7 +41,7 @@ def par(text: str) -> str:
     >>> par('''no trailing newline''')
     no trailing newline
     """
-    trail = "\n" if text.rstrip(' ')[-1] == "\n" else ""
+    trail = "\n" if text.rstrip(" ")[-1] == "\n" else ""
     text = re.sub(r"\n\s*\n", "\n\n", text)
     paragraphs = [x.strip() for x in text.split("\n\n")]
     return "\n\n".join([re.sub(r"\s+", " ", x) for x in paragraphs]) + trail

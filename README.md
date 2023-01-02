@@ -20,7 +20,7 @@ class SuddenDeathError(Exception):
             before.I saw her with my own eyes.Fairly blue with it, she was.They
             all thought she was dead; but my father he kept ladling gin down
             her throat til she came to so sudden that she bit the bowl off the
-            spoon. 
+            spoon.
 
             What call would a woman with that strength in her have to die of
             {self.cause}?  What become of her new straw hat that should have
@@ -85,7 +85,7 @@ PARAGRAPH = par("""Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
     velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
     cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
     est laborum.""")
-    
+
 # the above is equivalent to
 
 PARAGRAPH = (
@@ -110,7 +110,7 @@ par('''
     Lorem ipsum dolor
     sit amet,'''
 )
-    
+
 # yields
 Lorem ipsum dolor sit amet,
 ```
@@ -119,7 +119,7 @@ Separates paragraphs with double newline (`'\n\n'`).
 
 ```python
 from paragraphs import par
-    
+
 par '''
     Lorem ipsum dolor
     sit amet,
