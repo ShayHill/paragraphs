@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "paragraphs"
-version = "0.1.0"
+version = "0.1.1"
 description = "Incorporate long strings painlessly, beautifully into Python code."
 authors = ["Shay Hill <shay_public@hotmail.com>"]
 license = "MIT"

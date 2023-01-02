@@ -4,6 +4,6 @@
 :created: 2023-01-02
 """
 
-from paragraphs.paragraphs import par
+from paragraphs.main import par
 
 __all__ = ["par"]

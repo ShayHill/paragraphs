@@ -5,7 +5,7 @@
 :created: 7/8/2019
 """
 
-from paragraphs.paragraphs import par
+from paragraphs.main import par
 
 LOREM_IPSUM = """
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
