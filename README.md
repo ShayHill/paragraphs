@@ -17,10 +17,10 @@ class SuddenDeathError(Exception):
             f"""
             Y - e - e - e - es, Lord love you! Why should she die of
             {self.cause}? She come through diphtheria right enough the year
-            before.I saw her with my own eyes.Fairly blue with it, she was.They
-            all thought she was dead; but my father he kept ladling gin down
-            her throat til she came to so sudden that she bit the bowl off the
-            spoon.
+            before. I saw her with my own eyes. Fairly blue with it, she was.
+            They all thought she was dead; but my father he kept ladling gin
+            down her throat till she came to so sudden that she bit the bowl
+            off the spoon.
 
             What call would a woman with that strength in her have to die of
             {self.cause}?  What become of her new straw hat that should have
@@ -144,4 +144,21 @@ retains one trailing newline
 
 >>> par('''no trailing newline''')
 no trailing newline
+```
+
+## Notes
+
+converts all whitespace to " "
+
+```python
+>>> par('''converts\tall\twhitespace\tto\<space>''')
+converts all whitespace to <space>
+```
+
+compresses consecutive whitespace to " "
+
+
+```python
+>>> par('''compresses       consecutive    whitespace''')
+compresses consecutive whitespace
 ```
