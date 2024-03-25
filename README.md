@@ -12,18 +12,18 @@ class SuddenDeathError(Exception):
     def __init__(self, cause: str) -> None:
         self.cause = cause
 
-    def __str__(self):
+    def __str__(self) -> str:
         return par(
             f"""
             Y - e - e - e - es, Lord love you! Why should she die of
             {self.cause}? She come through diphtheria right enough the year
             before. I saw her with my own eyes. Fairly blue with it, she was.
-            They all thought she was dead; but my father he kept ladling gin
+            They all thought she was dead; but my father, he kept ladling gin
             down her throat till she came to so sudden that she bit the bowl
             off the spoon.
 
             What call would a woman with that strength in her have to die of
-            {self.cause}?  What become of her new straw hat that should have
+            {self.cause}? What become of her new straw hat that should have
             come to me? Somebody pinched it; and what I say is, them as pinched
             it done her in."""
         )
@@ -32,7 +32,7 @@ raise SuddenDeathError("influenza")
 ```
 
 **Nicely-formatted long string data. Spoilers for some old novels here,
-but these ARE the original titles.**
+but these *are* the original titles.**
 
 ```python
 author2titles = {
@@ -78,24 +78,27 @@ pip install paragraphs
 ```python
 from paragraphs import par
 
-PARAGRAPH = par("""Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-    ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+PARAGRAPH = par(
+    """Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+    commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate
     velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
     cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-    est laborum.""")
+    est laborum."""
+)
 
 # the above is equivalent to
 
 PARAGRAPH = (
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod"
-    " tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim"
-    " veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea"
-    " commodo consequat. Duis aute irure dolor in reprehenderit in voluptate"
-    " velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint"
-    " occaecat cupidatat non proident, sunt in culpa qui officia deserunt"
-    " mollit anim id est laborum.")
+    + " tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim"
+    + " veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea"
+    + " commodo consequat. Duis aute irure dolor in reprehenderit in voluptate"
+    + " velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint"
+    + " occaecat cupidatat non proident, sunt in culpa qui officia deserunt"
+    + " mollit anim id est laborum."
+)
 
 ```
 
@@ -104,31 +107,39 @@ PARAGRAPH = (
 Joins lines. Removes indentation and leading whitespace.
 
 ```python
-from paragraphs import par
-
-par('''
-    Lorem ipsum dolor
-    sit amet,'''
+>>> par(
+    """Lorem ipsum dolor
+    sit amet,"""
 )
 
-# yields
 Lorem ipsum dolor sit amet,
 ```
 
-Separates paragraphs with double newline (`'\n\n'`).
+Ignores one leading newline.
 
 ```python
-from paragraphs import par
+>>> par(
+    """
+    Lorem ipsum dolor
+    sit amet,"""
+)
 
-par '''
+Lorem ipsum dolor sit amet,
+```
+
+Separates paragraphs with double newline (`"\n\n"`).
+
+```python
+>>> par (
+    """
     Lorem ipsum dolor
     sit amet,
 
     consectetur
     adipiscing
-    elit'''
+    elit"""
+)
 
-# yields
 Lorem ipsum dolor sit amet,
 <blankline>
 consectetur adipiscing elit
@@ -137,12 +148,16 @@ consectetur adipiscing elit
 Retains one trailing newline (if present).
 
 ```python
->>> par('''retains one trailing newline
-... ''')
+>>> par(
+    """retains one trailing newline
+    """
+)
+
 retains one trailing newline
 <blankline>
 
->>> par('''no trailing newline''')
+>>> par("""no trailing newline""")
+
 no trailing newline
 ```
 
@@ -151,14 +166,15 @@ no trailing newline
 converts all whitespace to " "
 
 ```python
->>> par('''converts\tall\twhitespace\tto\<space>''')
+>>> par("""converts\tall\twhitespace\tto\<space>""")
+
 converts all whitespace to <space>
 ```
 
 compresses consecutive whitespace to " "
 
-
 ```python
->>> par('''compresses       consecutive    whitespace''')
+>>> par("""compresses       consecutive    whitespace""")
+
 compresses consecutive whitespace
 ```
