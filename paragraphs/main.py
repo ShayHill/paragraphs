@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Html-like formatting of multi-line strings.
 
 :author: Shay Hill
@@ -9,8 +8,7 @@ import re
 
 
 def par(text: str) -> str:
-    """
-    Html-like paragraph formatting.
+    r"""Html-like paragraph formatting.
 
     :param text: any block of text indented to any level
     :return:
