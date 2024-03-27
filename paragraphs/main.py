@@ -6,6 +6,9 @@
 
 import re
 
+# match a newline followed by any number of blank lines
+_RE_PARBREAK = re.compile(r"\n\s*\n")
+
 
 def par(text: str) -> str:
     r"""Html-like paragraph formatting.
@@ -39,7 +42,7 @@ def par(text: str) -> str:
     >>> par('''no trailing newline''')
     no trailing newline
     """
-    trail = "\n" if "\n" in re.search(r"\s*$", text).group() else ""  # type: ignore
-    text = re.sub(r"\n\s*\n", "\n\n", text.strip())
-    paragraphs = [x.strip() for x in text.split("\n\n")]
-    return "\n\n".join([re.sub(r"\s+", " ", x) for x in paragraphs]) + trail
+    trail = "\n" if text.rstrip(" \t").endswith("\n") else ""
+    paragraphs = _RE_PARBREAK.split(text.strip())
+    paragraphs = [" ".join(x.split()) for x in paragraphs]
+    return "\n\n".join(paragraphs) + trail
