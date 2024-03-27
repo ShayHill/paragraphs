@@ -40,6 +40,6 @@ def par(text: str) -> str:
     no trailing newline
     """
     trail = "\n" if text.rstrip(" ")[-1] == "\n" else ""
-    text = re.sub(r"\n\s*\n", "\n\n", text)
+    text = re.sub(r"\n\s*\n", "\n\n", text.strip())
     paragraphs = [x.strip() for x in text.split("\n\n")]
     return "\n\n".join([re.sub(r"\s+", " ", x) for x in paragraphs]) + trail
