@@ -39,7 +39,7 @@ def par(text: str) -> str:
     >>> par('''no trailing newline''')
     no trailing newline
     """
-    trail = "\n" if text.rstrip(" ")[-1] == "\n" else ""
+    trail = "\n" if "\n" in re.search(r"\s*$", text).group() else ""  # type: ignore
     text = re.sub(r"\n\s*\n", "\n\n", text.strip())
     paragraphs = [x.strip() for x in text.split("\n\n")]
     return "\n\n".join([re.sub(r"\s+", " ", x) for x in paragraphs]) + trail
