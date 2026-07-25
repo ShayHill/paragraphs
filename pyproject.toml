@@ -3,22 +3,40 @@ name = "paragraphs"
 version = "1.0.1"
 description = "Incorporate long strings painlessly, beautifully into Python code."
 authors = [{ name = "Shay Hill", email = "shay_public@hotmail.com" }]
-license = {text = "MIT"}
+license = "MIT"
+license-files = ["LICENSE.txt"]
 readme = "README.md"
 requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 6 - Mature",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Typing :: Typed",
+]
 dependencies = []
 
-[dependency-groups]
-dev = ["commitizen", "pre-commit", "pytest"]
-
 [build-system]
-requires = ["setuptools", "setuptools-scm"]
-build-backend = "setuptools.build_meta"
+requires = ["uv_build>=0.11.25,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "commitizen>=3.31.0",
+    "pre-commit>=3.5.0",
+    "pytest>=8.3.5",
+]
 
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "1.0.1"
+version = "1.0.0"
 tag_format = "$version"
 version_files = ["pyproject.toml:^version"]
 
@@ -27,14 +45,59 @@ version_files = ["pyproject.toml:^version"]
 profile = "black"
 
 
+[tool.pytest.ini_options]
+addopts = "--doctest-modules"
+pythonpath = "tests"
+testpaths = ["tests"]
+log_cli = true
+
+
+[tool.ruff]
+target-version = "py38"
+exclude = ["typings", ".venv"]
+[tool.ruff.lint.pydocstyle]
+convention = "pep257"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*.py" = [
+    "S101",
+    "D",
+    "F401",
+] # Ignore assertions, docstrings, unused imports in test files
+
+[tool.ruff.format]
+docstring-code-line-length = 88
+skip-magic-trailing-comma = true
+
+[tool.ruff.lint.isort]
+# keep isort consistent with format.skip-magic-trailing-comma
+split-on-trailing-comma = false
+
+[tool.ruff.lint]
+select = ["ALL"]
+# only auto-fix __all__ sorting (RUF022) and import sorting (I)
+fixable = ["RUF022", "I"]
+ignore = [
+    "COM812",  # trailing comma missing (does not agree with Black)
+    "D203",    # 1 blank line before class docstring (incompatible with D211)
+    "D213",    # multi-line summary second line (incompatible with D212)
+    "ISC003",  # explicitly concatenated string should be implicit
+    "FLY",     # Use f-string instead of ...
+    "S311",    # Standard pseudo-random generators are not suitable for security/cryptographic purposes
+    "S301",    # don't use pickle
+    "CPY001",  # missing copyright notice at the top of file
+]
+
+
 [tool.pyright]
+include = ["paragraphs", "tests"]
 exclude = ["**/__pycache__.py"]
+ignore = ["typings", ".venv"]
 
 pythonVersion = "3.8"
-pythonPlatform = "Any"
+pythonPlatform = "All"
 
 typeCheckingMode = "strict"
-reportShadowedImports = true
 reportCallInDefaultInitializer = true
 reportImplicitStringConcatenation = true
 reportPropertyTypeMismatch = true
@@ -43,4 +106,7 @@ reportUnnecessaryTypeIgnoreComment = true
 reportUnusedCallResult = true
 
 venvPath = "."
-venv = "./venv"
+venv = "./.venv"
+
+[[tool.pyright.executionEnvironments]]
+root = "tests"
