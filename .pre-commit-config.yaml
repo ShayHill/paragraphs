@@ -1,106 +1,26 @@
 ci:
   skip: [pyright]
 
-exclude: "tests"
+exclude: "typings|tests"
 
 repos:
 
-- repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v6.0.0
-  hooks:
-    - id: check-added-large-files
-    - id: check-ast
-    - id: check-case-conflict
-    - id: check-docstring-first
-    - id: check-executables-have-shebangs
-    - id: check-json
-    - id: check-merge-conflict
-      args:
-        - --assume-in-merge
-    - id: check-shebang-scripts-are-executable
-    - id: check-symlinks
-    - id: check-toml
-    - id: check-vcs-permalinks
-    - id: check-xml
-    - id: check-yaml
-    - id: debug-statements
-    - id: destroyed-symlinks
-    # - id: detect-aws-credentials
-    - id: detect-private-key
-    - id: end-of-file-fixer
-    - id: mixed-line-ending
-    - id: requirements-txt-fixer
-    - id: trailing-whitespace
-    - id: name-tests-test
-      args:
-      - --pytest-test-first
-    - id: no-commit-to-branch
-    - id: pretty-format-json
-      args: ['--autofix']
-    # - id: sort-simple-yaml
-        # files: .pre-commit-config.yaml
-
-- repo: https://github.com/pre-commit/mirrors-mypy
-  rev: v1.18.2
-  hooks:
-  - id: mypy
-    name: mypy
-    language: python
-    language_version: python 3.13
-    types: [python]
-    require_serial: true
-    verbose: true
-    additional_dependencies: ['types-requests']
-    # exclude: "tests"
-    # args:
-    # - --ignore-missing-imports
-    # files: ^(src/|tests/)
-
-- repo: https://github.com/PyCQA/isort
-  rev: 7.0.0
-  hooks:
-  - id: isort
-    args: ["--profile", "black", "--filter-files", "--combine-as", "honor--noqa"]
-
-- repo: https://github.com/psf/black
-  rev: 25.9.0
-  hooks:
-  - id: black
-    language_version: python3.9
-    args: ["--skip-magic-trailing-comma"]
-
-- repo: https://github.com/asottile/pyupgrade
-  rev: v3.21.0
-  hooks:
-  - args:
-    - --py38-plus
-    id: pyupgrade
-
 - repo: https://github.com/Lucas-C/pre-commit-hooks
-  rev: v1.5.5
+  rev: v1.5.6
   hooks:
   - id: remove-tabs
 
+# ruff config (select/ignore/fixable/target-version) lives in pyproject.toml
 - repo: https://github.com/charliermarsh/ruff-pre-commit
-  # ignores
-  # COM812 Trailing comma missing (does not agree with Black)
-  # D203 1 blank line required before class docstring (incompatible with D211)
-  # D213 multi line summary second line (incompatible with D212):
-  # ISC003 Explicitly concatenated string should be implicitly concatenated
-  #
-  # PGH003 Use specific rule codes when ignoring type issues
-  rev: 'v0.14.4'
+  rev: 'v0.16.0'
   hooks:
     - id: ruff
-      exclude: "tests"
-      args:
-      - --target-version=py39
-      - --select=ALL
-      - --ignore=COM812,D203,D213,ISC003,PGH003
-      # - --fix
+      args: ["--fix"]
+    - id: ruff-format
+      name: "ruff-format"
 
-# reads pyproject.toml for additional config
-- repo: https://github.com/RobertCraigie/pyright-python
-  rev: v1.1.407
-  hooks:
-    - id: pyright
+# basedpyright config (select/ignore/fixable/target-version) lives in pyproject.toml
+-   repo: https://github.com/DetachHead/basedpyright-pre-commit-mirror
+    rev: 1.39.9
+    hooks:
+    -   id: basedpyright
