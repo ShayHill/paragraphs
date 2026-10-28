@@ -1,6 +1,6 @@
 [project]
 name = "paragraphs"
-version = "1.0.1"
+version = "1.1.0"
 description = "Incorporate long strings painlessly, beautifully into Python code."
 readme = "README.md"
 license-files = ["LICENSE"]
@@ -36,7 +36,7 @@ dev = [
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "1.0.1"
+version = "1.1.0"
 tag_format = "$version"
 version_files = ["pyproject.toml:^version"]
 
