@@ -8,6 +8,7 @@ Incorporate long strings painlessly, beautifully into Python code.
 ```python
 from paragraphs import par
 
+
 class SuddenDeathError(Exception):
     def __init__(self, cause: str) -> None:
         self.cause = cause
@@ -27,6 +28,7 @@ class SuddenDeathError(Exception):
             come to me? Somebody pinched it; and what I say is, them as pinched
             it done her in."""
         )
+
 
 raise SuddenDeathError("influenza")
 ```
@@ -99,7 +101,6 @@ PARAGRAPH = (
     + " occaecat cupidatat non proident, sunt in culpa qui officia deserunt"
     + " mollit anim id est laborum."
 )
-
 ```
 
 ## Features

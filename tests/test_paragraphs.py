@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Test functions in paragraphs.
 
 :author: Shay Hill

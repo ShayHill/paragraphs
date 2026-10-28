@@ -8,7 +8,7 @@ from paragraphs import par
 
 
 class TestPar:
-    def test_remove_indentation(self):
+    def test_remove_indentation(self) -> None:
         """Remove leading whitespace."""
         text = par(
             """
@@ -16,7 +16,7 @@ class TestPar:
         )
         assert text == "Lorem ipsum dolor sit amet,"
 
-    def test_join_lines(self):
+    def test_join_lines(self) -> None:
         """Join consecutive lines with a space."""
         text = par(
             """
@@ -25,7 +25,7 @@ class TestPar:
         )
         assert text == "Lorem ipsum dolor sit amet,"
 
-    def test_separate_double_newline(self):
+    def test_separate_double_newline(self) -> None:
         """Split paragraphs on double newlines."""
         text = par(
             """
@@ -38,11 +38,11 @@ class TestPar:
         )
         assert text == "Lorem ipsum dolor sit amet,\n\nconsectetur adipiscing elit"
 
-    def test_ignore_leading_whitespace(self):
+    def test_ignore_leading_whitespace(self) -> None:
         """Ignore leading whitespace."""
         assert par("\n\n\n\n\t   \t\nLorem ipsum") == par("Lorem ipsum")
 
-    def test_separate_triple_newline(self):
+    def test_separate_triple_newline(self) -> None:
         """Split paragraphs on triple newlines."""
         text = par(
             """
@@ -56,7 +56,7 @@ class TestPar:
         )
         assert text == "Lorem ipsum dolor sit amet,\n\nconsectetur adipiscing elit"
 
-    def test_separate_many_newlines(self):
+    def test_separate_many_newlines(self) -> None:
         """Treat > 2 consecutive newlines as one paragraph break."""
         text = par(
             """
@@ -73,7 +73,7 @@ class TestPar:
         )
         assert text == "Lorem ipsum dolor sit amet,\n\nconsectetur adipiscing elit"
 
-    def test_retain_one_trailing_newline(self):
+    def test_retain_one_trailing_newline(self) -> None:
         """Retain one trailing newline."""
         text = par(
             """
@@ -83,7 +83,7 @@ class TestPar:
         )
         assert text == "Lorem ipsum dolor sit amet,\n"
 
-    def test_retain_two_trailing_newlines_as_one(self):
+    def test_retain_two_trailing_newlines_as_one(self) -> None:
         """Retain one trailing newline if text ends with multiple newlines."""
         text = par(
             """
@@ -94,7 +94,7 @@ class TestPar:
         )
         assert text == "Lorem ipsum dolor sit amet,\n"
 
-    def test_retain_many_trailing_newlines_as_one(self):
+    def test_retain_many_trailing_newlines_as_one(self) -> None:
         """Retain multiple trailing newlines as a paragraph break."""
         text = par(
             """
@@ -109,7 +109,7 @@ class TestPar:
         )
         assert text == "Lorem ipsum dolor sit amet,\n"
 
-    def test_convert_all_whitespace_to_space(self):
+    def test_convert_all_whitespace_to_space(self) -> None:
         """Convert all whitespace to a single space."""
         text = par(
             """
@@ -118,7 +118,7 @@ class TestPar:
         )
         assert text == "Lorem ipsum dolor sit amet,"
 
-    def test_compress_consecutive_whitespace(self):
+    def test_compress_consecutive_whitespace(self) -> None:
         """Convert all whitespace to a single space."""
         text = par(
             """
@@ -127,7 +127,7 @@ class TestPar:
         )
         assert text == "Lorem ipsum dolor sit amet,"
 
-    def test_remove_trailing_whitespace(self):
+    def test_remove_trailing_whitespace(self) -> None:
         """Remove trailing whitespace."""
         text = par(
             """
@@ -139,7 +139,7 @@ class TestPar:
         )
         assert text == "Lorem ipsum dolor sit amet,\n\nconsectetur adipiscing elit"
 
-    def test_trailing_newline_tab_delimited(self):
+    def test_trailing_newline_tab_delimited(self) -> None:
         """Remove trailing tab but capture trailing newline."""
         text = par(
             """
